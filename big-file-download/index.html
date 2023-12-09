@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <h1>Web worker for downloading large files</h1>
+    <p>
+      Main script delegates large file download to web worker and listens to
+      messages containing the progress time.
+    </p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center">
+      <div
+        style="display: flex; flex-direction: column; gap: 0.5rem; width: 50rem"
+      >
+        <label for="urlInput">URL to download</label>
+        <input type="text" id="urlInput" value="" style="width: 100%" />
+        <label for="urlInput">Filename</label>
+        <input type="text" id="nameInput" value="" style="width: 100%" />
+        <label for="progressBar">Progress <span id="progress"></span></label>
+        <input
+          id="progressBar"
+          type="range"
+          min="0"
+          max="100"
+          value="0"
+          style="width: 100%"
+          disabled
+        />
+      </div>
+      <button id="downloadBtn" onclick="startDownload()">Start download</button>
+      <button id="cancelBtn" onclick="cancelDownload()">Cancel download</button>
+    </div>
+
+    <div>
+      <h2>Counter</h2>
+      <p>Prove that website is still responsive when downloading</p>
+      <b>Counter = <span id="counter">0</span></b>
+    </div>
+  </body>
+</html>
