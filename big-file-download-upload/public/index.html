@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <script src="index.js" type="module" defer></script>
+  </head>
+  <body>
+    <section>
+      <h2>Web worker for downloading large files</h2>
+      <p>
+        Main script delegates large file download to web worker and listens to
+        messages from the worker: progress, error, done.
+      </p>
+
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center"
+      >
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 50rem;
+          "
+        >
+          <label for="urlInput"
+            >URL to download (remember CORS limitations)</label
+          >
+          <input type="text" id="urlInput" value="" style="width: 100%" />
+          <label for="urlInput">Filename</label>
+          <input type="text" id="nameInput" value="" style="width: 100%" />
+          <label for="progressBar">Progress <span id="progress"></span></label>
+          <input
+            id="progressBar"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            style="width: 100%"
+            disabled
+          />
+        </div>
+        <button id="downloadBtn">Start download</button>
+        <button id="cancelBtn">Cancel download</button>
+      </div>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>Counter</h2>
+      <p>Prove that website is still responsive when downloading</p>
+      <b>Counter = <span id="counter">0</span></b>
+    </section>
+
+    <hr />
+
+    <section>
+      <h2>Web worker for uploading a file to the server</h2>
+      <p>
+        Main script delegates file upload to web worker and listens to messages
+        from the worker: progress, error, done.
+      </p>
+      <input type="file" id="fileInput" />
+      <label for="uploadProgressBar"
+        >Progress <span id="uploadProgress"></span
+      ></label>
+      <input
+        id="uploadProgressBar"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+        style="width: 100%"
+        disabled
+      />
+      <button id="uploadStartBtn">Start upload</button>
+      <button id="uploadCancelBtn">Cancel upload</button>
+    </section>
+  </body>
+</html>
