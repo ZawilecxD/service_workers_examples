@@ -3,7 +3,7 @@ onmessage = function (e) {
   var data = e.data;
   var type = data.type;
   var url = data.url;
-  var fileName = data.fileName;
+  var filename = data.filename;
   var xmlHTTP;
 
   console.log(
@@ -11,7 +11,7 @@ onmessage = function (e) {
   );
   switch (type) {
     case "start":
-      saveOrOpenBlob(url, fileName);
+      saveOrOpenBlob(url, filename);
       break;
     case "cancel":
       cancelRequest();
@@ -40,7 +40,7 @@ function saveOrOpenBlob(url, blobName) {
   };
   xmlHTTP.onloadend = function (e) {
     if (e.loaded) {
-      postMessage({ type: "done", blob, blobName });
+      postMessage({ type: "done", blob: blob, blobName: blobName });
     }
   };
   xmlHTTP.send();

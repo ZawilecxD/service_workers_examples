@@ -50,7 +50,11 @@ myWorker.onmessage = function (e) {
   }
 };
 function startDownload() {
-  myWorker.postMessage({ type: "start", url: urlInput.value });
+  myWorker.postMessage({
+    type: "start",
+    url: urlInput.value,
+    filename: nameInput.value,
+  });
   downloadBtn.setAttribute("disabled", true);
 }
 
@@ -75,13 +79,12 @@ function onDownloadCancel() {
 }
 
 function onDownloadDone(blob, blobName) {
-  var fileName = blobName;
   var tempEl = document.createElement("a");
   document.body.appendChild(tempEl);
   tempEl.style = "display: none";
   const url = window.URL.createObjectURL(blob);
   tempEl.href = url;
-  tempEl.download = fileName;
+  tempEl.download = blobName;
   tempEl.click();
   window.URL.revokeObjectURL(url);
   downloadBtn.removeAttribute("disabled");
